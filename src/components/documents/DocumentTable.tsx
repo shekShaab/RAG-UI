@@ -35,7 +35,7 @@ export default function DocumentTable({ documents, onDelete, onDownload, onReing
   const [categoryFilter, setCategoryFilter] = useState("");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
-  const categories = [...new Set(documents.map(d => d.category))];
+  const categories = Array.from(new Set(documents.map(d => d.category)));
 
   const filtered = documents.filter(d => {
     if (search && !d.filename.toLowerCase().includes(search.toLowerCase())) return false;
