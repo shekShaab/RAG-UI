@@ -10,7 +10,12 @@ const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const KEY  = process.env.NEXT_PUBLIC_API_KEY ?? "";
 
 function headers(extra?: Record<string, string>): HeadersInit {
-  return { "X-API-Key": KEY, "Content-Type": "application/json", ...extra };
+  return {
+    "X-API-Key": KEY,
+    "Content-Type": "application/json",
+    "ngrok-skip-browser-warning": "true",
+    ...extra,
+  };
 }
 
 async function json<T>(res: Response): Promise<T> {
