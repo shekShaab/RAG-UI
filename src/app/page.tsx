@@ -44,9 +44,9 @@ export default function DashboardPage() {
         </div>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <StatCard label="Total documents" value={docs.length} icon={FileText} sub={`${processed} processed`} />
-          <StatCard label="Total chunks" value={totalChunks.toLocaleString()} icon={Activity} color="text-teal-600" />
-          <StatCard label="Categories" value={cats.length} icon={Tag} color="text-violet-600" />
+          <StatCard label="Total documents" value={docs.length} icon={FileText as any} sub={`${processed} processed`} />
+          <StatCard label="Total chunks" value={totalChunks.toLocaleString()} icon={Activity as any} color="text-teal-600" />
+          <StatCard label="Categories" value={cats.length} icon={Tag as any} color="text-violet-600" />
           <StatCard
             label="Failed documents"
             value={failed}

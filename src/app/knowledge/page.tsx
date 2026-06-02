@@ -110,10 +110,10 @@ export default function KnowledgePage() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total documents" value={report.length} icon={Clock} />
-        <StatCard label="Stale" value={stale.length} icon={AlertTriangle} color="text-amber-500"
+        <StatCard label="Total documents" value={report.length} icon={Clock as any} />
+        <StatCard label="Stale" value={stale.length} icon={AlertTriangle as any} color="text-amber-500"
           sub="exceed TTL" />
-        <StatCard label="Expired" value={expired.length} icon={Trash2} color="text-red-500"
+        <StatCard label="Expired" value={expired.length} icon={Trash2 as any} color="text-red-500"
           sub="exceed 2× TTL" />
         <Card className="p-5">
           <p className="text-sm text-slate-500 mb-1">Knowledge graph</p>

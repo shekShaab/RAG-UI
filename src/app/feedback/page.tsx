@@ -4,7 +4,7 @@ import { ThumbsUp, ThumbsDown, CheckCircle, RefreshCw, MessageSquare } from "luc
 import { PageHeader, Button, Card, CategoryBadge, StatCard } from "@/components/ui";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "abhi1";
+const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "";
 const hdr  = () => ({ "X-API-Key": AKEY, "Content-Type": "application/json" });
 const get  = (p: string) => fetch(`${API}${p}`, { headers: hdr() }).then(r => r.json());
 const post = (p: string, b?: any) => fetch(`${API}${p}`, { method:"POST", headers: hdr(), body: b ? JSON.stringify(b) : undefined }).then(r => r.json());
@@ -117,11 +117,11 @@ export default function FeedbackPage() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total feedback" value={summary?.total ?? "—"} icon={MessageSquare} />
-        <StatCard label="Positive" value={summary?.positive ?? "—"} icon={ThumbsUp} color="text-green-500" />
-        <StatCard label="Negative" value={summary?.negative ?? "—"} icon={ThumbsDown} color="text-red-500" />
+        <StatCard label="Total feedback" value={summary?.total ?? "—"} icon={MessageSquare as any} />
+        <StatCard label="Positive" value={summary?.positive ?? "—"} icon={ThumbsUp as any} color="text-green-500" />
+        <StatCard label="Negative" value={summary?.negative ?? "—"} icon={ThumbsDown as any} color="text-red-500" />
         <StatCard label="Score" value={summary ? `${summary.score_pct}%` : "—"}
-          icon={CheckCircle}
+          icon={CheckCircle as any}
           color={summary?.score_pct >= 70 ? "text-green-500" : summary?.score_pct >= 50 ? "text-amber-500" : "text-red-500"}
           sub={summary?.unreviewed ? `${summary.unreviewed} unreviewed` : undefined} />
       </div>

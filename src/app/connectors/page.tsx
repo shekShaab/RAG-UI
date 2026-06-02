@@ -289,10 +289,10 @@ export default function ConnectorsPage() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total connectors" value={connectors.length} icon={Link2} />
-        <StatCard label="Active"           value={active}           icon={CheckCircle} color="text-green-500" />
-        <StatCard label="Synced ok"        value={synced}           icon={RefreshCw}   color="text-teal-600" />
-        <StatCard label="Failed"           value={failed}           icon={AlertTriangle} color="text-red-500" />
+        <StatCard label="Total connectors" value={connectors.length} icon={Link2 as any} />
+        <StatCard label="Active"           value={active}           icon={CheckCircle as any} color="text-green-500" />
+        <StatCard label="Synced ok"        value={synced}           icon={RefreshCw as any}   color="text-teal-600" />
+        <StatCard label="Failed"           value={failed}           icon={AlertTriangle as any} color="text-red-500" />
       </div>
 
       {loading ? (

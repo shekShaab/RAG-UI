@@ -4,7 +4,7 @@ import { BarChart2, Zap, Database, ThumbsUp, Clock, TrendingUp } from "lucide-re
 import { PageHeader, StatCard, Card, CategoryBadge } from "@/components/ui";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "abhi1";
+const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "";
 const hdr  = () => ({ "X-API-Key": AKEY, "Content-Type": "application/json" });
 
 async function get(path: string) {
@@ -89,12 +89,12 @@ export default function AnalyticsPage() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total queries" value={overview?.total_queries ?? "—"} icon={BarChart2} />
-        <StatCard label="Avg latency" value={overview ? `${overview.avg_latency_ms}ms` : "—"} icon={Clock} color="text-teal-600" />
-        <StatCard label="Cache hit rate" value={overview ? `${overview.cache_hit_rate}%` : "—"} icon={Zap} color="text-amber-500" />
+        <StatCard label="Total queries" value={overview?.total_queries ?? "—"} icon={BarChart2 as any} />
+        <StatCard label="Avg latency" value={overview ? `${overview.avg_latency_ms}ms` : "—"} icon={Clock as any} color="text-teal-600" />
+        <StatCard label="Cache hit rate" value={overview ? `${overview.cache_hit_rate}%` : "—"} icon={Zap as any} color="text-amber-500" />
         <StatCard label="Feedback score"
           value={fbSummary ? `${fbSummary.score_pct}%` : "—"}
-          icon={ThumbsUp} color={fbSummary?.score_pct >= 70 ? "text-green-500" : "text-red-500"}
+          icon={ThumbsUp as any} color={fbSummary?.score_pct >= 70 ? "text-green-500" : "text-red-500"}
           sub={fbSummary ? `${fbSummary.positive}↑  ${fbSummary.negative}↓` : undefined} />
       </div>
 

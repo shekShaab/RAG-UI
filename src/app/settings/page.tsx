@@ -7,7 +7,7 @@ import {
 import { PageHeader, Button, Card, Spinner } from "@/components/ui";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const KEY  = process.env.NEXT_PUBLIC_API_KEY ?? "abhi1";
+const KEY  = process.env.NEXT_PUBLIC_API_KEY ?? "";
 const hdr  = (ct = true) => ({ "X-API-Key": KEY, ...(ct ? { "Content-Type": "application/json" } : {}) });
 const get  = (p: string) => fetch(`${API}${p}`, { headers: hdr(false) }).then(r => r.json());
 const put  = (p: string, b: any) => fetch(`${API}${p}`, { method: "PUT", headers: hdr(), body: JSON.stringify(b) }).then(r => r.json());
@@ -46,7 +46,7 @@ const InfoBox = ({ t }: { t: string }) => <div className="flex gap-2 p-3 bg-blue
 const WarnBox = ({ t }: { t: string }) => <div className="flex gap-2 p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700 mt-3"><AlertTriangle size={13} className="shrink-0 mt-0.5"/>{t}</div>;
 const CritBox = ({ t }: { t: string }) => <div className="flex gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-700 mt-3"><AlertTriangle size={13} className="shrink-0 mt-0.5"/>{t}</div>;
 
-type SaveResult = { status: string; hot_reloaded: string[]; restart_required: string[]; message: string };
+type SaveResult = { status?: string; hot_reloaded?: string[]; restart_required?: string[]; message?: string };
 
 export default function SettingsPage() {
   const TABS = ["llm","embed","s3","retrieval","infra","connection"] as const;
@@ -130,19 +130,19 @@ export default function SettingsPage() {
       />
 
       {saveResult && (
-        <div className={`mb-5 p-4 rounded-xl border text-sm ${saveResult.restart_required.length ? "bg-amber-50 border-amber-200 text-amber-800" : "bg-green-50 border-green-200 text-green-800"}`}>
+        <div className={`mb-5 p-4 rounded-xl border text-sm ${(saveResult.restart_required ?? []).length ? "bg-amber-50 border-amber-200 text-amber-800" : "bg-green-50 border-green-200 text-green-800"}`}>
           <div className="flex items-center gap-2 font-medium mb-1">
-            {saveResult.restart_required.length ? <AlertTriangle size={15}/> : <CheckCircle size={15}/>}
-            {saveResult.message}
+            {(saveResult.restart_required ?? []).length ? <AlertTriangle size={15}/> : <CheckCircle size={15}/>}
+            {saveResult.message ?? "Saved"}
           </div>
-          {saveResult.hot_reloaded.length > 0 && (
+          {(saveResult.hot_reloaded ?? []).length > 0 && (
             <p className="text-xs flex items-center gap-1 mt-1">
-              <Zap size={11}/> Applied immediately: {saveResult.hot_reloaded.join(", ")}
+              <Zap size={11}/> Applied immediately: {saveResult.hot_reloaded!.join(", ")}
             </p>
           )}
-          {saveResult.restart_required.length > 0 && (
+          {(saveResult.restart_required ?? []).length > 0 && (
             <p className="text-xs flex items-center gap-1 mt-1">
-              <RotateCcw size={11}/> Restart backend to apply: {saveResult.restart_required.join(", ")}
+              <RotateCcw size={11}/> Restart backend to apply: {saveResult.restart_required!.join(", ")}
             </p>
           )}
         </div>

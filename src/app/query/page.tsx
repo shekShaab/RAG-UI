@@ -7,7 +7,7 @@ import { Spinner, CategoryBadge } from "@/components/ui";
 import SourcePanel from "@/components/query/SourcePanel";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "abhi1";
+const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "";
 
 let msgId = 0;
 const uid = () => String(++msgId);
@@ -116,7 +116,7 @@ export default function QueryPage() {
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages]);
 
   const sendFeedback = useCallback(async (rating: 1 | -1, msg: Message) => {
-    const userMsg = messages.findLast(m => m.role === "user");
+    const userMsg = [...messages].reverse().find(m => m.role === "user");
     if (!userMsg) return;
     try {
       await fetch(`${API}/feedback`, {

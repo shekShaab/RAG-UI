@@ -4,7 +4,7 @@ import { Search, FileText, ChevronRight, Filter } from "lucide-react";
 import { PageHeader, Card, CategoryBadge, Spinner } from "@/components/ui";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "abhi1";
+const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "";
 
 interface Hit { chunk_id: string; content: string; source_filename: string; category: string; score: number; heading_path?: string; }
 interface Results { query: string; total_hits: number; categories_searched: number; by_category: Record<string, Hit[]>; top_hits: Hit[]; }

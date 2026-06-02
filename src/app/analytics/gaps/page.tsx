@@ -106,10 +106,11 @@ export default function GapsPage() {
       />
 
       <div className="grid grid-cols-4 gap-4 mb-6">
-        <StatCard label="Open gaps"   value={summary?.open ?? "—"}        icon={AlertCircle} color="text-red-500" />
-        <StatCard label="Zero-source" value={summary?.zero_source ?? "—"} icon={AlertCircle} color="text-red-600"
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <StatCard label="Open gaps"   value={summary?.open ?? "—"}        icon={AlertCircle as any} color="text-red-500" />
+        <StatCard label="Zero-source" value={summary?.zero_source ?? "—"} icon={AlertCircle as any} color="text-red-600"
           sub="No content found at all" />
-        <StatCard label="Resolved"    value={summary?.resolved ?? "—"}    icon={CheckCircle} color="text-green-500" />
+        <StatCard label="Resolved"    value={summary?.resolved ?? "—"}    icon={CheckCircle as any} color="text-green-500" />
         <Card className="p-5 flex flex-col justify-between">
           <p className="text-sm text-slate-500">Fix a gap</p>
           <Link href="/documents">
