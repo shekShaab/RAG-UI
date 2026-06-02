@@ -5,7 +5,7 @@ import { PageHeader, Button, Card, CategoryBadge, StatCard } from "@/components/
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const AKEY = process.env.NEXT_PUBLIC_API_KEY ?? "";
-const hdr  = () => ({ "X-API-Key": AKEY, "Content-Type": "application/json" });
+const hdr  = () => ({ "ngrok-skip-browser-warning": "true", "X-API-Key": AKEY, "Content-Type": "application/json" });
 const get  = (p: string) => fetch(`${API}${p}`, { headers: hdr() }).then(r => r.json());
 const post = (p: string, b?: any) => fetch(`${API}${p}`, { method:"POST", headers: hdr(), body: b ? JSON.stringify(b) : undefined }).then(r => r.json());
 

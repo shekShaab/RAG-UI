@@ -8,7 +8,7 @@ import { PageHeader, Button, Card, Spinner } from "@/components/ui";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const KEY  = process.env.NEXT_PUBLIC_API_KEY ?? "";
-const hdr  = (ct = true) => ({ "X-API-Key": KEY, ...(ct ? { "Content-Type": "application/json" } : {}) });
+const hdr  = (ct = true) => ({ "ngrok-skip-browser-warning": "true", "X-API-Key": KEY, ...(ct ? { "Content-Type": "application/json" } : {}) });
 const get  = (p: string) => fetch(`${API}${p}`, { headers: hdr(false) }).then(r => r.json());
 const put  = (p: string, b: any) => fetch(`${API}${p}`, { method: "PUT", headers: hdr(), body: JSON.stringify(b) }).then(r => r.json());
 const post = (p: string) => fetch(`${API}${p}`, { method: "POST", headers: hdr(false) }).then(r => r.json());

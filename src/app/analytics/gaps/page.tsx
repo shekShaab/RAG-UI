@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const API  = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const KEY  = process.env.NEXT_PUBLIC_API_KEY ?? "";
-const hdr  = () => ({ "X-API-Key": KEY, "Content-Type": "application/json" });
+const hdr  = () => ({ "ngrok-skip-browser-warning": "true", "X-API-Key": KEY, "Content-Type": "application/json" });
 const get  = (p: string) => fetch(`${API}${p}`, { headers: hdr() }).then(r => r.json());
 const post = (p: string) => fetch(`${API}${p}`, { method: "POST", headers: hdr() }).then(r => r.json());
 
